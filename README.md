@@ -1,6 +1,6 @@
 # DayDream
 
-DayDream is a gradio app ofor Dreambooth
+DayDream is a gradio app over Dreambooth
 
 
 
