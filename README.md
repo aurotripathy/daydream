@@ -1,3 +1,9 @@
+# DayDream
+
+DayDream is a gradio app ofor Dreambooth
+
+
+
 # DreamBooth training example
 
 [DreamBooth](https://arxiv.org/abs/2208.12242) is a method to personalize text2image models like stable diffusion given just a few(3~5) images of a subject.
@@ -292,4 +298,3 @@ python train_dreambooth_flax.py \
   --num_class_images=200 \
   --max_train_steps=800
 ```
-# daydream
