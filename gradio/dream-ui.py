@@ -35,7 +35,8 @@ with gr.Blocks() as demo:
                 btn = gr.Button("Generate Pic")
             gallery = gr.Gallery(
                 label="Generated images", show_label=True, elem_id="gallery"
-            ).style(grid=[num_images], height="auto")
+            # ).style(grid=[num_images], height="auto")
+            ).style(grid=1, height=512, container=True)
     
         with gr.Column():
             hangman = gr.Textbox(
