@@ -20,9 +20,11 @@ num_images = 3
 def render():
     file_list = os.listdir(static_images_dir)
     print(file_list)
-    # anchors = []
-    # with open (static_images_dir, 'r') as f:
-    #     anchors.append()
+    anchors = []
+    for file in file_list:
+        print(f'reading file:{file}')
+        anchors.append(Image.open(os.path.join(static_images_dir, file)))
+    return anchors
 
 
 def infer_cumulative(prompt, num_images=num_images):
