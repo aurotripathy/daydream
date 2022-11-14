@@ -8,6 +8,10 @@ My assumption is that you know how to install and run the basic HF dreambooth co
 
 To generate the fine-tuned model, run the script `elon-run.sh`
 
+The necessary 'seeding' images are at  [daydream/images/elon/](daydream/images/elon/)
+
+Once fine-tuning is complete, run the gradio-abded app [gradio/dream-ui.py](gradio/dream-ui.py)
+
 # DreamBooth training example
 
 [DreamBooth](https://arxiv.org/abs/2208.12242) is a method to personalize text2image models like stable diffusion given just a few(3~5) images of a subject.
