@@ -8,7 +8,7 @@ My assumption is that you know how to install and run the basic HF dreambooth co
 
 To generate the fine-tuned model, run the script `elon-run.sh`
 
-The necessary 'seeding' images are at  [daydream/images/elon/](daydream/images/elon/)
+The necessary 'seeding' images are at  [images/elon/](images/elon/)
 
 Once fine-tuning is complete, run the gradio-abded app [gradio/dream-ui.py](gradio/dream-ui.py)
 
