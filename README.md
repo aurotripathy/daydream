@@ -1,8 +1,12 @@
 # DayDream
 
-DayDream is a gradio app over Dreambooth
+DayDream is a gradio app wrapped over [DreamBooth](https://arxiv.org/abs/2208.12242) 
 
+### Elon blue finch Example
 
+My assumption is that you know how to install and run the basic HF dreambooth code.  
+
+To generate the fine-tuned model, run the script `elon-run.sh`
 
 # DreamBooth training example
 
