@@ -15,15 +15,19 @@ model_id = f"../elon_saved_model"
 static_images_dir = '../images/elon'
 device = "cuda"
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(device)
-num_images = 3
+num_images = 4
 
-def render():
+def render_anchor_images():
     file_list = os.listdir(static_images_dir)
     print(file_list)
     anchors = []
+    size = 128, 128
     for file in file_list:
         print(f'reading file:{file}')
-        anchors.append(Image.open(os.path.join(static_images_dir, file)))
+        # im = Image.open(os.path.join(static_images_dir, file)).thumbnail(size, Image.Resampling.LANCZOS)
+        im = Image.open(os.path.join(static_images_dir, file))
+        im.thumbnail(size, Image.Resampling.LANCZOS)
+        anchors.append(im)
     return anchors
 
 
@@ -37,6 +41,7 @@ def infer_cumulative(prompt, num_images=num_images):
 
 
 with gr.Blocks() as demo:    
+    gr.Markdown("# DayDream")
     with gr.Row() as row:
         with gr.Column(): ## Left
             with gr.Row():
@@ -46,13 +51,13 @@ with gr.Blocks() as demo:
                 btn = gr.Button("Day Dream")
             gallery = gr.Gallery(
                 label="Generated images", show_label=True, elem_id="gallery"
-            ).style(grid=1, height=512, container=True)
+            ).style(grid=2, height=256, container=True)
 
     
         with gr.Column():  # Right
-            static_gallery = gr.Gallery(render,
+            static_gallery = gr.Gallery(render_anchor_images,
                 label="Anchor images", show_label=True, elem_id="gallery"
-            ).style(grid=1, height=256, container=True)
+            ).style(grid=3, height=128, container=False)
             
 
     # Render the static piece as thumbnails
