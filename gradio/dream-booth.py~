@@ -13,6 +13,23 @@ device = "cuda"
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(device)
 pipe = pipe.to(device)
 
+# def infer(prompt, samples, steps, scale, seed):        
+#     generator = torch.Generator(device=device).manual_seed(seed)
+#     images_list = pipe(
+#         [prompt] * samples,
+#         num_inference_steps=steps,
+#         guidance_scale=scale,
+#         generator=generator,
+#     )
+#     images = []
+#     safe_image = Image.open(r"unsafe.png")
+#     for i, image in enumerate(images_list["sample"]):
+#         if(images_list["nsfw_content_detected"][i]):
+#             images.append(safe_image)
+#         else:
+#             images.append(image)
+#     return images
+    
 
 def infer(prompt):    
     return pipe(prompt, num_inference_steps=50, guidance_scale=7.5).images
@@ -58,6 +75,8 @@ with block:
                 step=1,
                 randomize=True,
             )
+        # text = f'A photo of sks boy on the beach playing with the waves',
+
 
         text.submit(infer, inputs=[text], outputs=gallery)
         btn.click(infer, inputs=[text], outputs=gallery)
