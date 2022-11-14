@@ -14,4 +14,4 @@ Once fine-tuning is complete, run the gradio-abded app [gradio/dream-ui.py](grad
 
 Your prompt should be something like `A photo of an sks person holding a blue finch`.
 
-You display should look like this: ![output](assets/A%20photo%20of%20a%20sks%20person%20holding%20a%20blue%20finch.png)
+You output should be similar to the output below: ![output](assets/A%20photo%20of%20a%20sks%20person%20holding%20a%20blue%20finch.png)
