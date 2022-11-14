@@ -8,12 +8,21 @@ from diffusers import StableDiffusionPipeline
 from datasets import load_dataset
 from PIL import Image  
 import os
+from PIL import Image
 
 auth_token = os.getenv("auth_token")
 model_id = f"../elon_saved_model"
+static_images_dir = '../images/elon'
 device = "cuda"
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(device)
 num_images = 3
+
+def render():
+    file_list = os.listdir(static_images_dir)
+    print(file_list)
+    # anchors = []
+    # with open (static_images_dir, 'r') as f:
+    #     anchors.append()
 
 
 def infer_cumulative(prompt, num_images=num_images):
@@ -27,22 +36,24 @@ def infer_cumulative(prompt, num_images=num_images):
 
 with gr.Blocks() as demo:    
     with gr.Row() as row:
-        with gr.Column():
+        with gr.Column(): ## Left
             with gr.Row():
                 input_text = gr.Textbox(lines=1, 
-                                        label="Write a caption, don't worry, we'll imagine it for you.",
+                                        label="Complete the caption, we'll daydream it for you.",
                                         value="A photo of a sks person")
-                btn = gr.Button("Generate Pic")
+                btn = gr.Button("Day Dream")
             gallery = gr.Gallery(
                 label="Generated images", show_label=True, elem_id="gallery"
-            # ).style(grid=[num_images], height="auto")
             ).style(grid=1, height=512, container=True)
+
     
-        with gr.Column():
-            hangman = gr.Textbox(
-                label="Anchor Images",
-            )
-            used_letters_box = gr.Textbox(label="Used Letters")
+        with gr.Column():  # Right
+            static_gallery = gr.Gallery(render,
+                label="Anchor images", show_label=True, elem_id="gallery"
+            ).style(grid=1, height=256, container=True)
+            
+
+    # Render the static piece as thumbnails
 
     input_text.submit(infer_cumulative, inputs=[input_text], outputs=gallery)
     btn.click(infer_cumulative, [input_text], outputs=gallery)
