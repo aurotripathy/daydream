@@ -41,8 +41,9 @@ def infer_cumulative(prompt, num_images=num_images):
 
 
 with gr.Blocks() as demo:    
-    gr.Markdown("# DayDream")
+    gr.Markdown("# DayDream w/Dreambooth")
     with gr.Row() as row:
+        
         with gr.Column(): ## Left
             with gr.Row():
                 input_text = gr.Textbox(lines=1, 
@@ -56,11 +57,9 @@ with gr.Blocks() as demo:
     
         with gr.Column():  # Right
             static_gallery = gr.Gallery(render_anchor_images,
-                label="Anchor images", show_label=True, elem_id="gallery"
+                label="Anchor Thumbnails", show_label=True, elem_id="gallery"
             ).style(grid=3, height=128, container=False)
-            
 
-    # Render the static piece as thumbnails
 
     input_text.submit(infer_cumulative, inputs=[input_text], outputs=gallery)
     btn.click(infer_cumulative, [input_text], outputs=gallery)
